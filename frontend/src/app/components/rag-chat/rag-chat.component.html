@@ -1,0 +1,66 @@
+<div class="rag-container">
+  <div class="rag-header">
+    <h2>RAG Chat Assistant</h2>
+    <div *ngIf="statusMessage" class="status-message">{{ statusMessage }}</div>
+  </div>
+
+  <div class="rag-ingest-card">
+    <h3>Ingest Knowledge Base</h3>
+    <div class="ingest-form">
+      <label>
+        <span>Source Type:</span>
+        <select [(ngModel)]="sourceType">
+          <option value="text">Text File</option>
+          <option value="json">JSON File</option>
+          <option value="pdf">PDF File</option>
+          <option value="web">Web URL</option>
+        </select>
+      </label>
+      <input *ngIf="sourceType !== 'web'" type="file" (change)="onFileSelected($event)" />
+      <input *ngIf="sourceType === 'web'" type="text" [(ngModel)]="webUrl" placeholder="Enter web URL" />
+      <button (click)="ingest()">Ingest</button>
+    </div>
+  </div>
+
+  <div class="rag-query-card">
+    <h3>Query from File</h3>
+    <div class="query-file-upload">
+      <input type="file" accept=".txt" (change)="onQueryFileSelected($event)" />
+      <select [(ngModel)]="ragTechnique">
+        <option value="basic">Basic</option>
+        <option value="hybrid">Hybrid Search</option>
+        <option value="reranking">Reranking</option>
+        <option value="semantic">Semantic Search</option>
+      </select>
+      <button (click)="sendQueryFile()" [disabled]="!selectedQueryFile">Send Query File</button>
+    </div>
+  </div>
+  <div class="rag-chat-card">
+    <h3>Chat</h3>
+
+    <!-- Chat messages -->
+    <div class="messages" id="messages">
+      <div *ngFor="let msg of chatResponses"
+        [ngClass]="{'user-message': msg.startsWith('You:'), 'bot-message': msg.startsWith('Bot:')}">
+        {{msg}}
+      </div>
+    </div>
+    <!-- RAG Technique Dropdown at the top -->
+    <div class="rag-technique-selector" style="margin-bottom: 12px;">
+      <label for="ragTechnique">RAG Technique:</label>
+      <select id="ragTechnique" [(ngModel)]="ragTechnique">
+        <option value="basic">Basic</option>
+        <option value="hybrid">Hybrid Search</option>
+        <option value="reranking">Reranking</option>
+        <option value="semantic">Semantic Search</option>
+      </select>
+    </div>
+    <!-- Input and Send Button below -->
+    <div class="input-container" style="margin-top: 12px;">
+      <input type="text" id="userInput" placeholder="Type your message..." [(ngModel)]="userInput"
+        (keyup.enter)="sendMessage()" />
+      <button (click)="sendMessage()">Send</button>
+    </div>
+  </div>
+
+</div>

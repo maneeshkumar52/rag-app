@@ -1,0 +1,9 @@
+FastAPI
+chromadb
+uvicorn
+pydantic
+httpx
+python-dotenv
+PyPDF2
+python-multipart
+beautifulsoup4

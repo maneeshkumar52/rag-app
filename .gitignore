@@ -1,0 +1,52 @@
+# Node & Angular
+frontend/node_modules/
+frontend/dist/
+frontend/.angular/
+frontend/.env
+frontend/.DS_Store
+
+# Angular build artifacts
+frontend/out-tsc/
+frontend/tmp/
+frontend/coverage/
+
+# Python
+backend/src/__pycache__/
+backend/src/api/__pycache__/
+backend/src/services/__pycache__/
+backend/src/utils/__pycache__/
+backend/*.pyc
+backend/*.pyo
+backend/*.pyd
+backend/.Python
+backend/env/
+backend/venv/
+backend/.env
+backend/.DS_Store
+
+# ChromaDB database and data
+backend/chromadb/
+!backend/chromadb/.gitkeep  # If you want to keep the folder structure
+
+# VSCode settings
+.vscode/
+*.code-workspace
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Environment files
+.env
+.env.*
+
+# Python virtual environment at root (if any)
+backend/venv/
+env/
+
+# Misc
+*.swp
+*.swo
