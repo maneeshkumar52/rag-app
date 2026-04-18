@@ -44,6 +44,7 @@ Thumbs.db
 .env.*
 
 # Python virtual environment at root (if any)
+.venv/
 backend/venv/
 env/
 
